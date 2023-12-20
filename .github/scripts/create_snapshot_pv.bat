@@ -70,6 +70,7 @@ GOTO:EOF
   call .github/scripts/install.bat
 
   rem Create *.7z archive
+  echo "%ProgramFiles%\7-Zip\7z.exe" a -mx9 %PACK_DIR%\sudo-%PROG_VER%.r%REVISION%.%CPU_TARGET%-%OS_TARGET%.7z %PROG_INSTALL_DIR%\*
   "%ProgramFiles%\7-Zip\7z.exe" a -mx9 %PACK_DIR%\sudo-%PROG_VER%.r%REVISION%.%CPU_TARGET%-%OS_TARGET%.7z %PROG_INSTALL_DIR%\*
   
   rem Clean
