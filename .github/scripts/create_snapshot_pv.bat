@@ -19,7 +19,7 @@ rem Prepare target dir
 mkdir %PACK_DIR%
 
 rem Get revision number
-call src\platform\git2revisioninc.exe.cmd %CD%
+call .github/scripts/git2revisioninc.exe.cmd %CD%
 echo %REVISION%> %PACK_DIR%\revision.txt
 
 rem Read version number
@@ -45,7 +45,7 @@ rem Set processor architecture
 set CPU_TARGET=i386
 set OS_TARGET=win32
 
-call :DoBuild
+rem call :DoBuild
 
 rem Set processor architecture
 set CPU_TARGET=x86_64
@@ -57,7 +57,7 @@ GOTO:EOF
 
 :DoBuild
   rem Build all components of sudo
-  call build.bat darkwin
+  call build.bat sudo
 
   rem Copy libraries
   copy install\windows\lib\%CPU_TARGET%\*.dll             %CD%\
@@ -67,7 +67,7 @@ GOTO:EOF
   mkdir %BUILD_PACK_DIR%
 
   rem Prepare install files
-  call install\windows\install.bat
+  call .github/scripts/install.bat
 
   rem Create *.7z archive
   "%ProgramFiles%\7-Zip\7z.exe" a -mx9 %PACK_DIR%\sudo-%PROG_VER%.r%REVISION%.%CPU_TARGET%-%OS_TARGET%.7z %PROG_INSTALL_DIR%\*
