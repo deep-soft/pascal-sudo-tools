@@ -43,10 +43,11 @@ jobs:
     - name: Set PROG_VER
       shell: bash
       run: |
-        # set -x;
-        _version_major_=$(grep "VERSION_MAJOR "       Sudo/Build.pp | awk -F = '{print $2}')  || true;
-        _version_minor_=$(grep "VERSION_MINOR "       Sudo/Build.pp | awk -F = '{print $2}')  || true;
-        _version_micro_=$(grep "VERSION_REVISION "    Sudo/Build.pp | awk -F = '{print $2}')  || true;
+        set -x;
+        cat Sudo/Build.pp
+        _version_major_=$(grep "VERSION_MAJOR"       Sudo/Build.pp | awk -F = '{print $2}')  || true;
+        _version_minor_=$(grep "VERSION_MINOR"       Sudo/Build.pp | awk -F = '{print $2}')  || true;
+        _version_micro_=$(grep "VERSION_REVISION"    Sudo/Build.pp | awk -F = '{print $2}')  || true;
         echo "_version_major_ = $_version_major_";
         echo "_version_minor_ = $_version_minor_";
         echo "_version_micro_ = $_version_micro_";
