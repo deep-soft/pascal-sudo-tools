@@ -39,8 +39,6 @@ jobs:
 
     - name: Checkout source
       uses: deep-soft/checkout@v3
-      with:
-        fetch-depth: 0
 
     - name: Set PROG_VER
       shell: bash
