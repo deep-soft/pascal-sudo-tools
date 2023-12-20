@@ -33,14 +33,6 @@ set PROG_VER=%PROG_MAJOR%.%PROG_MINOR%.%PROG_MICRO%
 rem Change log
 git log -n 10 --format="%%h %%al %%ai%%n%%s%%n" > %PACK_DIR%\changelog.txt
 
-rem Get libraries
-pushd install
-curl -o windows.7z -L https://github.com/sudo/snapshots/raw/main/windows.7z
-rem alternate version 20230730 # https://github.com/deep-soft/rustdesk-sciter-helpers/releases/download/sudo-helpers/sudo-lib-windows.7z
-"%ProgramFiles%\7-Zip\7z.exe" x windows.7z
-del /Q windows.7z
-popd
-
 rem Set processor architecture
 set CPU_TARGET=i386
 set OS_TARGET=win32
@@ -58,10 +50,6 @@ GOTO:EOF
 :DoBuild
   rem Build all components of sudo
   call build.bat sudo
-
-  rem Copy libraries
-  copy install\windows\lib\%CPU_TARGET%\*.dll             %CD%\
-  copy install\windows\lib\%CPU_TARGET%\winpty-agent.exe  %CD%\
 
   rem Prepare install dir
   mkdir %BUILD_PACK_DIR%
