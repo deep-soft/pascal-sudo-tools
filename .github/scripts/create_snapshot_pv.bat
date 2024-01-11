@@ -1,4 +1,8 @@
 :: 2023-08-06 09:00
+echo Current directory: %CD%
+echo List files recursive - begin ...
+dir /s
+echo List files recursive - end
 
 rem test if PROG_VER already set
 if .%PROG_VER%==. goto Set_PROG_VER
